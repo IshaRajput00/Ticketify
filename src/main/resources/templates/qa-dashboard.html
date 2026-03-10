@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>QA Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>QA Dashboard</h2>
+
+    <h3 style="margin-top: 20px;">Resolved Tickets</h3>
+
+    <table>
+        <tr>
+            <th>Ticket ID</th>
+            <th>Title</th>
+            <th>Status</th>
+        </tr>
+
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.id}"></td>
+            <td th:text="${ticket.title}"></td>
+            <td th:text="${ticket.status}"></td>
+        </tr>
+    </table>
+
+    <h3 style="margin-top: 30px;">Customer Feedback</h3>
+
+    <table>
+        <tr>
+            <th>Ticket ID</th>
+            <th>Rating</th>
+            <th>Comment</th>
+        </tr>
+
+        <tr th:each="fb : ${feedbacks}">
+            <td th:text="${fb.ticket.id}"></td>
+            <td th:text="${fb.rating}"></td>
+            <td th:text="${fb.comment}"></td>
+
+
+
+        </tr>
+
+    </table>
+
+    <a class="footer-link" th:href="@{/logout}">
+        Logout
+    </a>
+
+</div>
+
+</body>
+</html>

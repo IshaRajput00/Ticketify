@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agent Tickets</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Agent Tickets</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.id}"></td>
+            <td th:text="${ticket.title}"></td>
+            <td th:text="${ticket.category}"></td>
+            <td th:text="${ticket.priority}"></td>
+            <td th:text="${ticket.status}"></td>
+            <td class="action-links">
+
+                <!-- UPDATE STATUS -->
+                <a th:href="@{/agent/ticket/update(id=${ticket.id})}">
+                    Update Status
+                </a>
+
+                |
+
+                <!-- ADD NOTE -->
+                <a th:href="@{/agent/ticket/note(id=${ticket.id})}">
+                    Add Note
+                </a>
+
+                |
+
+                <!-- CHAT WITH CUSTOMER -->
+                <a th:href="@{/ticket/chat(ticketId=${ticket.id})}">
+                    Chat with Customer
+                </a>
+
+            </td>
+        </tr>
+    </table>
+
+    <a class="footer-link" th:href="@{/agent/dashboard}">
+        Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

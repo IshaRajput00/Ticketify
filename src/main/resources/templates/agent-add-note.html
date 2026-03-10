@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Internal Note</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container" style="max-width: 600px;">
+
+    <h2>Add Internal Note</h2>
+
+    <form th:action="@{/agent/ticket/note}" method="post">
+
+        <input type="hidden" name="ticketId" th:value="${ticketId}" />
+
+        <label>Internal Note</label>
+        <textarea
+                name="message"
+                rows="5"
+                placeholder="Write internal note here..."
+                required></textarea>
+
+        <button type="submit" style="margin-top: 10px;">
+            Save Note
+        </button>
+    </form>
+
+    <!-- Better back navigation -->
+    <a class="footer-link"
+       th:href="@{/agent/ticket/update(id=${ticketId})}">
+        Back to Ticket
+    </a>
+
+</div>
+
+</body>
+</html>

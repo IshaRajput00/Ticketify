@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ticket Chat</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container" style="max-width: 700px;">
+
+    <h2>Ticket Chat</h2>
+
+    <!-- CHAT HISTORY -->
+    <div class="chat-box">
+
+        <div th:if="${#lists.isEmpty(messages)}">
+            <p>No messages yet. Start the conversation.</p>
+        </div>
+
+        <div th:each="msg : ${messages}"
+             th:class="'chat-message ' + (${msg.senderRole} == 'AGENT' ? 'chat-right' : 'chat-left')">
+
+            <div th:text="${msg.message}"></div>
+
+            <div class="chat-time"
+                 th:text="${#temporals.format(msg.sentAt, 'dd MMM HH:mm')}">
+            </div>
+
+        </div>
+
+        <div style="clear: both;"></div>
+
+    </div>
+
+    <!-- SEND MESSAGE -->
+    <form th:action="@{/ticket/chat}" method="post">
+
+        <input type="hidden" name="ticketId" th:value="${ticketId}">
+        <input type="hidden" name="role" th:value="${role}">
+
+        <textarea
+                name="message"
+                placeholder="Type your message..."
+                required></textarea>
+
+        <button type="submit">Send</button>
+
+    </form>
+
+    <a class="footer-link" th:href="@{/redirect}">
+        Back
+    </a>
+
+</div>
+
+</body>
+</html>

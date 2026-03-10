@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agent Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Agent Dashboard</h2>
+
+    <ul style="list-style: none; padding: 0; margin-top: 20px;">
+        <li style="margin-bottom: 12px;">
+            <a th:href="@{/agent/tickets}">View Assigned Tickets</a>
+        </li>
+        <!-- Ticket status & notes are part of ticket flow -->
+    </ul>
+
+    <a class="footer-link" th:href="@{/logout}">
+        Logout
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Customer Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Customer Dashboard</h2>
+
+    <ul style="list-style: none; padding: 0; margin-top: 20px;">
+        <li style="margin-bottom: 12px;">
+            <a th:href="@{/customer/ticket/create}">Create Ticket</a>
+        </li>
+        <li style="margin-bottom: 12px;">
+            <a th:href="@{/customer/tickets}">View My Tickets</a>
+        </li>
+        <!-- Feedback option is ticket-specific, so no direct link here -->
+    </ul>
+
+    <a class="footer-link" th:href="@{/logout}">Logout</a>
+
+</div>
+
+</body>
+</html>

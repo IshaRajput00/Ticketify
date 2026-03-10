@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ticket Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container" style="max-width: 600px;">
+
+    <h2>Ticket Details</h2>
+
+    <div class="details-box">
+        <p><b>ID:</b> <span th:text="${ticket.id}"></span></p>
+        <p><b>Title:</b> <span th:text="${ticket.title}"></span></p>
+        <p><b>Description:</b> <span th:text="${ticket.description}"></span></p>
+        <p><b>Category:</b> <span th:text="${ticket.category}"></span></p>
+        <p><b>Priority:</b> <span th:text="${ticket.priority}"></span></p>
+        <p><b>Status:</b> <span th:text="${ticket.status}"></span></p>
+    </div>
+
+    <!-- CHAT ACTION -->
+    <div style="margin-top: 15px;">
+        <a th:href="@{/ticket/chat(ticketId=${ticket.id})}">
+            Chat with Agent
+        </a>
+    </div>
+
+    <!-- FEEDBACK ACTION (ONLY IF RESOLVED) -->
+    <div style="margin-top: 10px;"
+         th:if="${ticket.status.name() == 'RESOLVED'}">
+        <a th:href="@{/customer/ticket/feedback(id=${ticket.id})}">
+            Give Feedback
+        </a>
+    </div>
+
+    <a class="footer-link" th:href="@{/customer/tickets}">
+        Back to My Tickets
+    </a>
+
+</div>
+
+</body>
+</html>

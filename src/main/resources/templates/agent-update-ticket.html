@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Ticket Status</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container" style="max-width: 600px;">
+
+    <h2>Update Ticket Status</h2>
+
+    <p>
+        <strong>Ticket:</strong>
+        <span th:text="${ticket.title}"></span>
+    </p>
+
+    <!-- ================= UPDATE STATUS ================= -->
+
+    <form th:action="@{/agent/ticket/update}" method="post">
+
+        <input type="hidden" name="id" th:value="${ticket.id}"/>
+
+        <label>Status</label>
+        <select name="status" required>
+            <option value="OPEN" th:selected="${ticket.status.name() == 'OPEN'}">OPEN</option>
+            <option value="IN_PROGRESS" th:selected="${ticket.status.name() == 'IN_PROGRESS'}">IN_PROGRESS</option>
+            <option value="RESOLVED" th:selected="${ticket.status.name() == 'RESOLVED'}">RESOLVED</option>
+        </select>
+
+        <button type="submit" style="margin-top: 10px;">
+            Update Status
+        </button>
+    </form>
+
+    <hr>
+
+    <!-- ================= INTERNAL NOTES ================= -->
+
+    <h3>Internal Notes</h3>
+
+    <!-- No notes -->
+    <p th:if="${#lists.isEmpty(notes)}">
+        No internal notes added yet.
+    </p>
+
+    <!-- Notes list -->
+    <ul th:if="${!#lists.isEmpty(notes)}">
+        <li th:each="note : ${notes}">
+            <span th:text="${note.message}"></span>
+        </li>
+    </ul>
+
+    <!-- Add new note -->
+    <div style="margin-top: 10px;">
+        <a th:href="@{/agent/ticket/note(id=${ticket.id})}">
+            Add Internal Note
+        </a>
+    </div>
+
+    <a class="footer-link" th:href="@{/agent/tickets}">
+        Back to Tickets
+    </a>
+
+</div>
+
+</body>
+</html>
